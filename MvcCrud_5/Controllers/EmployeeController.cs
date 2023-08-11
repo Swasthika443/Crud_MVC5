@@ -6,18 +6,19 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Web.Mvc;
 using MvcCrud_5.Models;
+using System.Configuration;
 
 namespace MvcCrud_5.Controllers
 {
     public class EmployeeController : Controller
     {
         // GET: Employee
-        string ConnectionString = "data source=.; database=CrudMVC; integrated security=True";
-
+        string ConnectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         [HttpGet]
         public ActionResult Index()
         {
             DataTable dt = new DataTable();
+         
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
 
